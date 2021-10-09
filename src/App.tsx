@@ -1,5 +1,4 @@
 import React from "react";
-import RouteConfiguration from "./routes";
 import { Provider } from "react-redux";
 import { ApplicationState } from "./redux/createRootReducer";
 import { Store } from "redux";
@@ -17,7 +16,6 @@ const App: React.FC<MainProps> = ({ store, history }) => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Routes />
-        <RouteConfiguration />
       </ConnectedRouter>
     </Provider>
   );

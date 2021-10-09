@@ -1,15 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "../components/Header";
 import Products from "../pages/Products";
 
-/** The routing configuration for the application using react-router */
+/**
+ * Route Configuration
+ * @returns
+ */
 const RouteConfiguration: React.FC = () => (
   <Switch>
     <Router>
-      <Route exact path="/" component={Products}>
-        {/*  <Route path="/recipes" component={RecipesPage} />
-      <Route path="/about" component={AboutPage} /> */}
-      </Route>
+      <Header />
+      <Route exact path="/" component={Products}></Route>
     </Router>
   </Switch>
 );

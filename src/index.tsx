@@ -4,6 +4,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserHistory } from "history";
 import configureStore from "./redux/configureStore";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const history = createBrowserHistory();
 
 const initialState: any = {};

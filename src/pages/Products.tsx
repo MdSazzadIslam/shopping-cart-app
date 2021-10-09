@@ -1,17 +1,12 @@
 import React, { useEffect } from "react";
 import { ProductProps } from "../types/product";
-import { getProducts } from "../redux/product/action";
+import * as actions from "../redux/product/action";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cart/action";
 import Item from "../components/Item";
 import { ApplicationState } from "../redux/createRootReducer";
-/* import { connect } from "react-redux";
-import { ThunkDispatch } from "redux-thunk";
-import { AnyAction } from "redux";
-import { ApplicationState } from "../redux/createRootReducer"; */
-
 import "./Products.css";
-
+import Loader from "../components/Loader";
 interface IProductProps {
   loading: boolean;
   data: ProductProps[];
@@ -25,47 +20,45 @@ interface IDispatch {
 type AllProps = IProductProps & IDispatch;
 
 const Products: React.FC<AllProps> = ({
-  loading,
+  /*  loading,
   data,
-  errors,
+  errors, */
   getProducts,
   addToCart,
 }) => {
   const dispatch = useDispatch();
-  const IProductProps = useSelector((state: ApplicationState) => state.product);
-  console.log(IProductProps);
+
+  const { data, loading, errors } = useSelector(
+    (state: ApplicationState) => state.product
+  );
+
   useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+    dispatch(actions.getProducts());
+  }, [dispatch]);
+  if (loading) {
+    return <Loader />;
+  }
+  if (errors) {
+    return <h5>something went wrong</h5>;
+  }
   return (
-    <div className="container">
-      <div className="list">
-        {data.map((item, id) => {
-          return (
-            <div key={id}>
-              <Item item={item} addToCart={addToCart} />
-            </div>
-          );
-        })}
+    <div className="home">
+      <div className="row">
+        <div className="col-md-1"></div>
+        <div className="col-md-12">
+          <div className="row">
+            {data.map((item, id) => {
+              return (
+                <div className="col-md-4 col-sm-12" key={id}>
+                  <Item item={item} addToCart={addToCart} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-
-/* const mapStateToProps = ({ product }: ApplicationState) => ({
-  loading: product.loading,
-  errors: product.errors,
-  data: product.data,
-});
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AnyAction>) => {
-  return {
-    getProducts: () => {
-      dispatch(getProducts());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Products); */
 
 export default Products;

@@ -1,9 +1,5 @@
-.container {
-  width: 100%;
-  max-width: 1170px;
-  margin: auto;
-}
-.list {
-  display: flex;
-  flex-wrap: wrap;
+.home {
+  box-sizing: border-box;
+  margin-left: 50px;
+  margin-right: 50px;
 }
