@@ -27,9 +27,9 @@ const Item: React.FC<Props> = ({ item, addToCart }) => {
       <div className="header">{item.name}</div>
       <div className="description">
         <div className="addToCart">
-          <input type="button" onClick={() => AddItemToCart(item)}>
+          <button type="button" onClick={() => AddItemToCart(item)}>
             Add To Cart
-          </input>
+          </button>
         </div>
       </div>
     </div>

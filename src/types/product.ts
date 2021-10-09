@@ -8,7 +8,8 @@ export type ProductProps = {
   description: string;
 };
 
-export type AddProduct = (newTodo: string) => void;
+export type getProducts = () => void;
+export type AddProduct = (newProduct: string) => void;
 export type DeleteProduct = (id: string) => void;
 
 export interface ProductState {

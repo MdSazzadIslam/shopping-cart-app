@@ -1,9 +1,14 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import ReactDOM from "react-dom";
 import App from "./App";
+import { createBrowserHistory } from "history";
+import configureStore from "./redux/configureStore";
+const history = createBrowserHistory();
+const initialState: any = {};
+const store = configureStore(history, initialState);
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+it("renders without crashing", () => {
+  const div = document.createElement("div");
+  ReactDOM.render(<App store={store} history={history} />, div);
+  ReactDOM.unmountComponentAtNode(div);
 });

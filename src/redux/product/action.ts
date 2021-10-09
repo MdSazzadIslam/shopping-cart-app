@@ -10,6 +10,7 @@ export type AppThunk = ActionCreator<
 >;
 
 export const getProducts: AppThunk = () => {
+  debugger;
   return (dispatch: Dispatch): Action => {
     try {
       return dispatch({
