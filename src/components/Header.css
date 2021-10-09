@@ -3,6 +3,8 @@
   height: 50px;
   background: #e7e8eb;
   margin: auto;
+  position: sticky;
+  top: 0;
 }
 
 .navHeader {

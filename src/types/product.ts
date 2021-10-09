@@ -2,8 +2,9 @@
 export type ProductProps = {
   id: string;
   name: string;
-  coverage: string;
-  risk: string;
+  minCoverage: number;
+  maxCoverage: number;
+  risk: number;
   price: number;
   image: string;
   description: string;

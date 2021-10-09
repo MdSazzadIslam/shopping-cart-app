@@ -19,7 +19,6 @@ export type AppThunk = ActionCreator<
 export const getProducts: AppThunk = () => {
   return (dispatch: Dispatch): Action => {
     try {
-      debugger;
       return dispatch({
         type: ProductActionTypes.GET_PRODUCT_SUCCESS,
         payload: product,

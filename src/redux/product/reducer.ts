@@ -39,7 +39,6 @@ export const initialState: ProductState = {
 /** The redux reducer for product. Handles product actions. */
 
 const reducer: Reducer<ProductState> = (state = initialState, action) => {
-  debugger;
   switch (action.type) {
     case ProductActionTypes.GET_PRODUCT_REQUEST: {
       return { ...state, loading: true };
