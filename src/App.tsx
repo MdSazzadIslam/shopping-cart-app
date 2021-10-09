@@ -1,5 +1,10 @@
 import React from "react";
 import RouteConfiguration from "./routes";
+import { Provider } from "react-redux";
+import { ApplicationState } from "./redux/createRootReducer";
+import { Store } from "redux";
+import { History } from "history";
+import { ConnectedRouter } from "connected-react-router";
 import Routes from "./routes";
 
 interface MainProps {
@@ -10,11 +15,10 @@ interface MainProps {
 const App: React.FC<MainProps> = ({ store, history }) => {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={customTheme}>
-        <ConnectedRouter history={history}>
-          <RouteConfiguration />
-        </ConnectedRouter>
-      </ThemeProvider>
+      <ConnectedRouter history={history}>
+        <Routes />
+        <RouteConfiguration />
+      </ConnectedRouter>
     </Provider>
   );
 };
