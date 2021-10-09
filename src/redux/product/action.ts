@@ -9,7 +9,7 @@ export type AppThunk = ActionCreator<
   ThunkAction<void, ApplicationState, null, Action<string>>
 >;
 
-export const getProductRequest: AppThunk = () => {
+export const getProducts: AppThunk = () => {
   return (dispatch: Dispatch): Action => {
     try {
       return dispatch({

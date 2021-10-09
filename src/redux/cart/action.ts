@@ -12,7 +12,7 @@ export type AppThunk = ThunkAction<
   Action<string>
 >;
 
-export const getCartRequest: AppThunk = () => {
+export const getCarts: AppThunk = () => {
   return (dispatch: Dispatch, state: ApplicationState): Action => {
     try {
       return dispatch({
