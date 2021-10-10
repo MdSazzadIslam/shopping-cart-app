@@ -16,15 +16,17 @@ interface IDispatch {
 type Props = IItemprops & IDispatch;
 
 const Item: React.FC<Props> = ({ item, addItemToCart }) => {
-  const [coverage, setCoverage] = useState<string>('');
+  const [coverage, setCoverage] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
 
   const AddItemToCart = () => {
+    item.coverage = coverage;
+    item.price = price;
     addItemToCart(item);
   };
 
   const handleCoverageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCoverage(e.target.value);
+    setCoverage(parseInt(e.target.value));
     const newPrice = Math.round(parseInt(e.target.value) * (item.risk / 100));
     setPrice(newPrice);
   };

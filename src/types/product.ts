@@ -6,6 +6,7 @@ export type ProductProps = {
   name: string;
   minCoverage: number;
   maxCoverage: number;
+  coverage: number;
   risk: number;
   price: number;
   qty: number;
