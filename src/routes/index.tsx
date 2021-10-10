@@ -1,9 +1,11 @@
-import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Header from "../components/Header";
-import Loader from "../components/Loader";
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from '../components/Header';
+import Loader from '../components/Loader';
 
-const Products = lazy(() => import("../pages/Products"));
+const Products = lazy(() => import('../pages/Products'));
+const Cart = lazy(() => import('../components/Cart'));
+
 /**
  * Route Configuration
  * @returns
@@ -20,7 +22,7 @@ const RouteConfiguration: React.FC = () => (
       <Router>
         <Header />
         <Route exact path="/" component={Products}></Route>
-        <Route render={() => <div> page not found </div>}></Route>
+        <Route exact path="/cart" component={Cart}></Route>
       </Router>
     </Suspense>
   </Switch>
