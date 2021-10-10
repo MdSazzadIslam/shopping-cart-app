@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { routerMiddleware } from "connected-react-router";
 import { History } from "history";
 import { ApplicationState, createRootReducer } from "./createRootReducer";
+import logger from "redux-logger";
 
 export default function configureStore(
   history: History,
@@ -11,7 +12,7 @@ export default function configureStore(
   const store = createStore(
     createRootReducer(history),
     initialState,
-    applyMiddleware(routerMiddleware(history), thunk)
+    applyMiddleware(routerMiddleware(history), thunk, logger)
   );
   return store;
 }
