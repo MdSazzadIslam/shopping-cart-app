@@ -1,34 +1,22 @@
-import React, { useEffect } from "react";
-import { ProductProps } from "../types/product";
-import * as actions from "../redux/product/action";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../redux/cart/action";
-import Item from "../components/Item";
-import { ApplicationState } from "../redux/createRootReducer";
-import "./Products.css";
-import Loader from "../components/Loader";
+import React, { useEffect } from 'react';
+import { ProductProps } from '../types/product';
+import * as productActions from '../redux/product/action';
+import { useDispatch, useSelector } from 'react-redux';
+import * as cartActions from '../redux/cart/action';
+import Item from '../components/Item';
+import { ApplicationState } from '../redux/createRootReducer';
+import './Products.css';
+import Loader from '../components/Loader';
+
 /**
  * defining props type for this component
  */
-interface IProductProps {
-  loading: boolean;
-  data: ProductProps[];
-  errors?: string;
-}
-interface IDispatch {
-  getProducts: () => any;
-  addToCart: (item: any) => any;
-}
+interface IProductProps {}
+interface IDispatch {}
 
 type AllProps = IProductProps & IDispatch;
 
-const Products: React.FC<AllProps> = ({
-  /*  loading,
-  data,
-  errors, */
-  getProducts,
-  addToCart,
-}) => {
+const Products: React.FC<AllProps> = ({}) => {
   const dispatch = useDispatch();
 
   const { data, loading, errors } = useSelector(
@@ -36,11 +24,11 @@ const Products: React.FC<AllProps> = ({
   );
 
   useEffect(() => {
-    dispatch(actions.getProducts());
+    dispatch(productActions.getProducts());
   }, [dispatch]);
 
-  addToCart = (item: any) => {
-    dispatch(addToCart(item));
+  const addToCart = (item: ProductProps) => {
+    dispatch(cartActions.addToCart(item));
   };
 
   if (errors) {
