@@ -43,29 +43,33 @@ const Products: React.FC<AllProps> = ({
     dispatch(addToCart(item));
   };
 
-  if (loading) {
-    return <Loader />;
-  }
   if (errors) {
-    return <h5>something went wrong</h5>;
+    return <h3>Something went wrong</h3>;
   }
+
   return (
-    <div className="home">
-      <div className="row">
-        <div className="col-md-1"></div>
-        <div className="col-md-12">
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="home">
           <div className="row">
-            {data.map((item, id) => {
-              return (
-                <div className="col-md-4 col-sm-12" key={id}>
-                  <Item item={item} addToCart={addToCart} />
-                </div>
-              );
-            })}
+            <div className="col-md-1"></div>
+            <div className="col-md-12">
+              <div className="row">
+                {data.map((item, id) => {
+                  return (
+                    <div className="col-md-4 col-sm-12" key={id}>
+                      <Item item={item} addToCart={addToCart} />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
