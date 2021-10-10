@@ -7,6 +7,9 @@ import Item from "../components/Item";
 import { ApplicationState } from "../redux/createRootReducer";
 import "./Products.css";
 import Loader from "../components/Loader";
+/**
+ * defining props type for this component
+ */
 interface IProductProps {
   loading: boolean;
   data: ProductProps[];
@@ -35,6 +38,11 @@ const Products: React.FC<AllProps> = ({
   useEffect(() => {
     dispatch(actions.getProducts());
   }, [dispatch]);
+
+  addToCart = (item: any) => {
+    dispatch(addToCart(item));
+  };
+
   if (loading) {
     return <Loader />;
   }

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { createBrowserHistory } from "history";
 import configureStore from "./redux/configureStore";
+
 const history = createBrowserHistory();
 const initialState: any = {};
 const store = configureStore(history, initialState);

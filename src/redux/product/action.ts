@@ -3,18 +3,11 @@ import { ActionCreator, Action, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
 
 import { ApplicationState } from "../createRootReducer";
-import product from "../../mockdata";
+import product from "../../mockdata.json";
 
 export type AppThunk = ActionCreator<
   ThunkAction<void, ApplicationState, null, Action<string>>
 >;
-
-/* export type AppThunk = ThunkAction<
-  void,
-  ApplicationState,
-  null,
-  Action<string>
->; */
 
 export const getProducts: AppThunk = () => {
   return (dispatch: Dispatch): Action => {

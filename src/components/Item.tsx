@@ -4,6 +4,9 @@ import { addToCart } from "../redux/cart/action";
 import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
 import "./Item.css";
+/**
+ * defining props type for this component
+ */
 interface IItemprops {
   item: ProductProps;
 }
@@ -25,7 +28,7 @@ const Item: React.FC<Props> = ({ item, addToCart }) => {
 
   const handleCoverageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCoverage(e.target.value);
-    const newPrice = parseInt(e.target.value) * (item.risk / 100);
+    const newPrice = Math.round(parseInt(e.target.value) * (item.risk / 100));
     setPrice(newPrice);
   };
 

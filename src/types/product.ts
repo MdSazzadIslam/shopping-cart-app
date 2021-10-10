@@ -1,4 +1,6 @@
-/** The basic structure of a product */
+/**
+ * The basic structure of a product
+ * */
 export type ProductProps = {
   id: string;
   name: string;
@@ -9,7 +11,9 @@ export type ProductProps = {
   image: string;
   description: string;
 };
-
+/**
+ * defining state property types
+ */
 export interface ProductState {
   readonly loading: boolean;
   readonly data: ProductProps[];

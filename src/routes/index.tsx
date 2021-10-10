@@ -12,6 +12,7 @@ const RouteConfiguration: React.FC = () => (
     <Router>
       <Header />
       <Route exact path="/" component={Products}></Route>
+      <Route render={() => <div> page not found </div>}></Route>
     </Router>
   </Switch>
 );

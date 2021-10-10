@@ -44,7 +44,6 @@ const reducer: Reducer<ProductState> = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case ProductActionTypes.GET_PRODUCT_SUCCESS: {
-      console.log("action payload", action.payload);
       return { ...state, loading: false, data: action.payload };
     }
     case ProductActionTypes.GET_PRODUCT_ERROR: {
