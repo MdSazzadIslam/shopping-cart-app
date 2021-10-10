@@ -1,11 +1,11 @@
-import { Reducer } from "redux";
+import { Reducer } from 'redux';
 
-import { CartActionTypes } from "./types";
-import { CartState } from "../../types/cart";
+import { CartActionTypes } from './types';
+import { CartState } from '../../types/cart';
 
 export const initialState: CartState = {
   data: {
-    id: "0",
+    userId: '0',
     items: [],
   },
   errors: undefined,
@@ -29,7 +29,7 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
         loading: state.loading,
         data: {
           ...state.data,
-          id: state.data.id,
+          id: state.data.userId,
           items: [...state.data.items, action.payload],
         },
       };
@@ -40,7 +40,7 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
         loading: state.loading,
         data: {
           ...state.data,
-          id: state.data.id,
+          id: state.data.userId,
           items: state.data.items.filter((item) => item !== action.payload.id),
         },
       };

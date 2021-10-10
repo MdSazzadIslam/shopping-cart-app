@@ -1,6 +1,6 @@
-import { ProductProps } from "./product";
+import { ProductProps } from './product';
 export type CartProps = {
-  id: string;
+  userId: string;
   items: ProductProps[];
 };
 

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { ProductProps } from '../types/product';
-import * as productActions from '../redux/product/action';
+import { getProducts } from '../redux/product/action';
 import { useDispatch, useSelector } from 'react-redux';
-import * as cartActions from '../redux/cart/action';
+import { addToCart } from '../redux/cart/action';
 import Item from '../components/Item';
 import { ApplicationState } from '../redux/createRootReducer';
 import './Products.css';
@@ -11,12 +11,14 @@ import Loader from '../components/Loader';
 /**
  * defining props type for this component
  */
-interface IProductProps {}
+interface IProductProps {
+  products: IProductProps;
+}
 interface IDispatch {}
 
 type AllProps = IProductProps & IDispatch;
 
-const Products: React.FC<AllProps> = ({}) => {
+const Products: React.FC<AllProps> = ({ products }) => {
   const dispatch = useDispatch();
 
   const { data, loading, errors } = useSelector(
@@ -24,11 +26,13 @@ const Products: React.FC<AllProps> = ({}) => {
   );
 
   useEffect(() => {
-    dispatch(productActions.getProducts());
+    dispatch(getProducts());
   }, [dispatch]);
 
-  const addToCart = (item: ProductProps) => {
-    dispatch(cartActions.addToCart(item));
+  const addItemToCart = (item: ProductProps) => {
+    debugger;
+    console.log(item);
+    dispatch(addToCart(item));
   };
 
   if (errors) {
@@ -48,7 +52,7 @@ const Products: React.FC<AllProps> = ({}) => {
                 {data.map((item, id) => {
                   return (
                     <div className="col-md-4 col-sm-12" key={id}>
-                      <Item item={item} addToCart={addToCart} />
+                      <Item item={item} addItemToCart={addItemToCart} />
                     </div>
                   );
                 })}
