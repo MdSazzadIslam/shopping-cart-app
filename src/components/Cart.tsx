@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { removeFromCart } from '../redux/cart/action';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,12 +13,11 @@ const Cart: React.FC = () => {
   const { data, loading, errors } = useSelector(
     (state: ApplicationState) => state.cart
   );
-  let total: number = 0;
-  const totalAmount = (carts: Array<ProductProps>) =>
-    carts.reduce((sum, { price, qty }) => sum + price * qty, 0);
-  if (data.items.length > 0) {
-    total = totalAmount(data.items);
-  }
+
+  const total = data.items.reduce(
+    (sum, { price, qty }) => sum + price * qty,
+    0
+  );
 
   const deleteCartHandler = async (
     e: React.FormEvent<HTMLButtonElement>,
@@ -97,7 +96,7 @@ const Cart: React.FC = () => {
                 <table className="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">Image</th>
+                      <th scope="col">Product</th>
                       <th scope="col">Module</th>
                       <th scope="col">Qty</th>
                       <th scope="col">Coverage</th>

@@ -25,7 +25,7 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
     }
     case CartActionTypes.ADD_TO_CART: {
       const data = state.data.items[0];
-      const qty = 0;
+
       debugger;
       if (data) {
         if (
@@ -56,7 +56,6 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
     }
 
     case CartActionTypes.REMOVE_FROM_CART: {
-      console.log(action.payload);
       return {
         errors: state.errors,
         loading: state.loading,
