@@ -30,8 +30,6 @@ const Products: React.FC<AllProps> = ({ products }) => {
   }, [dispatch]);
 
   const addItemToCart = (item: ProductProps) => {
-    debugger;
-    console.log(item);
     dispatch(addToCart(item));
   };
 

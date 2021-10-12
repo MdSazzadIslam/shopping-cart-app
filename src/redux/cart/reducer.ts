@@ -5,7 +5,7 @@ import { CartState } from '../../types/cart';
 
 export const initialState: CartState = {
   data: {
-    userId: '0',
+    userId: Date.now().toString(36) + Math.random().toString(36).substring(2),
     items: [],
   },
   errors: undefined,
@@ -24,6 +24,24 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
       return { ...state, loading: false, errors: action.payload };
     }
     case CartActionTypes.ADD_TO_CART: {
+      const data = state.data.items[0];
+      const qty = 0;
+      debugger;
+      if (data) {
+        if (
+          data.id === action.payload.id &&
+          data.coverage === action.payload.coverage
+        )
+          return {
+            errors: state.errors,
+            loading: state.loading,
+            data: {
+              ...state.data,
+              items: [...state.data.items, action.payload],
+            },
+          };
+        console.log(data.id, action.payload.id);
+      }
       return {
         errors: state.errors,
         loading: state.loading,

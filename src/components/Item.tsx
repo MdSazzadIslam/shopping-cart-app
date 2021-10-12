@@ -20,9 +20,14 @@ const Item: React.FC<Props> = ({ item, addItemToCart }) => {
   const [price, setPrice] = useState<number>(0);
 
   const AddItemToCart = () => {
-    item.coverage = coverage;
-    item.price = price;
-    addItemToCart(item);
+    if (coverage && price) {
+      item.qty = 1;
+      item.coverage = coverage;
+      item.price = price;
+      addItemToCart(item);
+    } else {
+      alert('Coverage is required!!! [Please move slider]');
+    }
   };
 
   const handleCoverageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

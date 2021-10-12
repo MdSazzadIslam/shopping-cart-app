@@ -1,6 +1,6 @@
-import { Reducer } from "redux";
-import { ProductActionTypes } from "./types";
-import { ProductState } from "../../types/product";
+import { Reducer } from 'redux';
+import { ProductActionTypes } from './types';
+import { ProductState } from '../../types/product';
 
 /**
  * Reducer, a part of the redux flow.
