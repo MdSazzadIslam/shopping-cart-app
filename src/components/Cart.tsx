@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { removeFromCart } from '../redux/cart/action';
 import { useDispatch, useSelector } from 'react-redux';
+import { ProductProps } from '../types/product';
 import { ApplicationState } from '../redux/createRootReducer';
-
+import Loader from './Loader';
 import './Cart.css';
+
 const Cart: React.FC = () => {
-  const [carts, setCarts] = useState<Number>(1);
   const dispatch = useDispatch();
 
   const { data, loading, errors } = useSelector(
     (state: ApplicationState) => state.cart
   );
-  console.log(data, loading, errors);
+  let total: number = 0;
+  const totalAmount = (carts: Array<ProductProps>) =>
+    carts.reduce((sum, { price, qty }) => sum + price * qty, 0);
+  if (data.items.length > 0) {
+    total = totalAmount(data.items);
+  }
 
   const deleteCartHandler = async (
     e: React.FormEvent<HTMLButtonElement>,
@@ -54,6 +60,21 @@ const Cart: React.FC = () => {
       </tr>
     );
   });
+  if (loading) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
+  }
+  if (errors) {
+    return (
+      <>
+        <h3>Something went wrong</h3>
+      </>
+    );
+  }
+
   return (
     <div>
       {data.items.length === 0 ? (
@@ -89,23 +110,6 @@ const Cart: React.FC = () => {
                   </thead>
                   <tbody>
                     {cartsData}
-                    <tr>
-                      <td />
-                      <td />
-                      <td />
-                      <td />
-                      <td>Sub-Total</td>
-                      <td className="text-right">{}</td>
-                    </tr>
-
-                    <tr>
-                      <td />
-                      <td />
-                      <td />
-                      <td />
-                      <td>Shipping</td>
-                      <td className="text-right">0</td>
-                    </tr>
 
                     <tr>
                       <td />
@@ -116,7 +120,7 @@ const Cart: React.FC = () => {
                         <strong>Total</strong>
                       </td>
                       <td className="text-right">
-                        <strong>{}</strong>
+                        <strong>{total}</strong>
                       </td>
                     </tr>
                   </tbody>
