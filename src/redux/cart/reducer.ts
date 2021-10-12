@@ -40,7 +40,6 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
               items: [...state.data.items, action.payload],
             },
           };
-        console.log(data.id, action.payload.id);
       }
       return {
         errors: state.errors,
@@ -52,17 +51,26 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
         },
       };
     }
+    case CartActionTypes.ADD_TO_CART_FAILURE: {
+      return { ...state, loading: false, errors: action.payload };
+    }
+
     case CartActionTypes.REMOVE_FROM_CART: {
+      console.log(action.payload);
       return {
         errors: state.errors,
         loading: state.loading,
         data: {
           ...state.data,
           id: state.data.userId,
-          items: state.data.items.filter((item) => item !== action.payload.id),
+          items: state.data.items.filter((item) => item.id !== action.payload),
         },
       };
     }
+    case CartActionTypes.REMOVE_FROM_CART_FAILURE: {
+      return { ...state, loading: false, errors: action.payload };
+    }
+
     default: {
       return state;
     }

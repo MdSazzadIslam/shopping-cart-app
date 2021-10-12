@@ -1,9 +1,9 @@
-import { CartActionTypes } from "./types";
-import { ProductProps } from "../../types/product";
-import { ActionCreator, Action, Dispatch } from "redux";
-import { ThunkAction } from "redux-thunk";
+import { CartActionTypes } from './types';
+import { ProductProps } from '../../types/product';
+import { ActionCreator, Action, Dispatch } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 
-import { ApplicationState } from "../createRootReducer";
+import { ApplicationState } from '../createRootReducer';
 
 export type AppThunk = ThunkAction<
   void,
@@ -39,6 +39,24 @@ export const addToCart: ActionCreator<
     } catch (e) {
       return dispatch({
         type: CartActionTypes.ADD_TO_CART_FAILURE,
+        payload: null,
+      });
+    }
+  };
+};
+
+export const removeFromCart: ActionCreator<
+  ThunkAction<void, ApplicationState, ProductProps, Action<string>>
+> = (id) => {
+  return (dispatch: Dispatch): Action => {
+    try {
+      return dispatch({
+        type: CartActionTypes.REMOVE_FROM_CART,
+        payload: id,
+      });
+    } catch (e) {
+      return dispatch({
+        type: CartActionTypes.REMOVE_FROM_CART_FAILURE,
         payload: null,
       });
     }

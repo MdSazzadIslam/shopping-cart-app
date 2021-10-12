@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { removeFromCart } from '../redux/cart/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { ApplicationState } from '../redux/createRootReducer';
 
@@ -13,11 +14,19 @@ const Cart: React.FC = () => {
   );
   console.log(data, loading, errors);
 
-  const cartsData = data.items.map((item) => {
+  const deleteCartHandler = async (
+    e: React.FormEvent<HTMLButtonElement>,
+    id: string
+  ) => {
+    e.preventDefault();
+    dispatch(removeFromCart(id));
+  };
+
+  const cartsData = data.items.map((item, index) => {
     const imageUrl = `/assets/images/${item.image}`;
 
     return (
-      <tr key={item.id}>
+      <tr key={index}>
         <td>
           <img src={imageUrl} width="70px" alt={item.name} />
         </td>
@@ -35,7 +44,10 @@ const Cart: React.FC = () => {
         <td className="text-right">{item.risk}</td>
         <td className="text-right">{item.price}</td>
         <td className="text-right">
-          <button className="btn btn-sm btn-danger">
+          <button
+            className="btn btn-sm btn-danger"
+            onClick={(e) => deleteCartHandler(e, item.id)}
+          >
             <i className="fa fa-trash" />
           </button>
         </td>
