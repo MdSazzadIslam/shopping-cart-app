@@ -9,6 +9,7 @@ export type ProductProps = {
   coverage: number;
   risk: number;
   price: number;
+  unitPrice: number;
   qty: number;
   image: string;
   description: string;

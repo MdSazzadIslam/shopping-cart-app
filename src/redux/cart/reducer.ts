@@ -37,8 +37,8 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
       if (productInCartIndex >= 0) {
         state.data.items[productInCartIndex].qty++;
         state.data.items[productInCartIndex].price =
-          state.data.items[productInCartIndex].price *
-          state.data.items[productInCartIndex].price;
+          state.data.items[productInCartIndex].unitPrice *
+          state.data.items[productInCartIndex].qty;
       } else {
         state.data.items.push({
           ...product,

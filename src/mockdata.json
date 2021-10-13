@@ -4,7 +4,7 @@
     "minCoverage": 0,
     "maxCoverage": 3000,
     "risk": 30,
-    "price": 0,
+    "unitPrice": 0,
     "image": "bike.jpg",
     "description": "This is a Test Description",
     "id": "fb94f208-6d34-425f-a3f8-e5b87794aef1"
@@ -14,7 +14,7 @@
     "minCoverage": 500,
     "maxCoverage": 10000,
     "risk": 5,
-    "price": 0,
+    "unitPrice": 0,
     "image": "jewelry.jpg",
     "description": "This is a test description",
     "id": "4c95788a-1fa2-4f5c-ab97-7a98c1862584"
@@ -24,7 +24,7 @@
     "minCoverage": 500,
     "maxCoverage": 6000,
     "risk": 35,
-    "price": 0,
+    "unitPrice": 0,
     "image": "electronics.jpg",
     "description": "This is a Test Description",
     "id": "77b98369-c6e3-4ebf-86a3-8d0e52024631"
@@ -34,7 +34,7 @@
     "minCoverage": 0,
     "maxCoverage": 20000,
     "risk": 30,
-    "price": 0,
+    "unitPrice": 0,
     "image": "sports.jpg",
     "description": "This is a Test Description",
     "id": "af65a773-9243-4e9e-b192-5eb3b22b0571"

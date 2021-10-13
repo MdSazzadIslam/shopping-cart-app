@@ -35,9 +35,10 @@ const Cart: React.FC = () => {
         </td>
         <td>{item.name}</td>
 
-        <td className="text-right">{item.qty}</td>
         <td className="text-right">{item.coverage}</td>
         <td className="text-right">{item.risk}</td>
+        <td className="text-right">{item.qty}</td>
+        <td className="text-right">{item.unitPrice}</td>
         <td className="text-right">{item.price}</td>
         <td className="text-right">
           <button
@@ -89,11 +90,14 @@ const Cart: React.FC = () => {
                     <tr>
                       <th scope="col">Product</th>
                       <th scope="col">Module</th>
-                      <th scope="col">Qty</th>
                       <th scope="col">Coverage</th>
                       <th scope="col">Risk</th>
+                      <th scope="col">Qty</th>
                       <th scope="col" className="text-right">
-                        Price
+                        Unit Price
+                      </th>
+                      <th scope="col" className="text-right">
+                        Total Price
                       </th>
                       <th> </th>
                     </tr>

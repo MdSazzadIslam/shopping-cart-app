@@ -17,13 +17,14 @@ type Props = IItemprops & IDispatch;
 
 const Item: React.FC<Props> = ({ item, addItemToCart }) => {
   const [coverage, setCoverage] = useState<number>(0);
-  const [price, setPrice] = useState<number>(0);
+  const [unitPrice, setUnitPrice] = useState<number>(0);
 
   const AddItemToCart = () => {
-    if (coverage && price) {
+    if (coverage && unitPrice) {
       item.qty = 1;
       item.coverage = coverage;
-      item.price = price;
+      item.unitPrice = unitPrice;
+      item.price = unitPrice;
       addItemToCart(item);
     } else {
       alert('Coverage is required!!! [Please move slider]');
@@ -33,7 +34,7 @@ const Item: React.FC<Props> = ({ item, addItemToCart }) => {
   const handleCoverageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCoverage(parseInt(e.target.value));
     const newPrice = Math.round(parseInt(e.target.value) * (item.risk / 100));
-    setPrice(newPrice);
+    setUnitPrice(newPrice);
   };
 
   const imageUrl = `/assets/images/${item.image}`;
@@ -64,7 +65,7 @@ const Item: React.FC<Props> = ({ item, addItemToCart }) => {
           />
         </div>
         <div className="px-2">
-          <h4>${price}</h4>
+          <h4>${unitPrice}</h4>
         </div>
 
         <div className="px-2 mt-3">
