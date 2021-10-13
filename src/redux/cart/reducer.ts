@@ -1,16 +1,16 @@
 import { Reducer } from 'redux';
-
 import { CartActionTypes } from './types';
 import { CartState } from '../../types/cart';
 
 export const initialState: CartState = {
   data: {
-    userId: Date.now().toString(36) + Math.random().toString(36).substring(2),
     items: [],
   },
   errors: undefined,
   loading: false,
 };
+
+/** The redux reducer for cart. Handles cart actions. */
 
 const reducer: Reducer<CartState> = (state = initialState, action) => {
   switch (action.type) {
@@ -23,34 +23,36 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
     case CartActionTypes.GET_CART_ERROR: {
       return { ...state, loading: false, errors: action.payload };
     }
-    case CartActionTypes.ADD_TO_CART: {
-      const data = state.data.items[0];
 
-      debugger;
-      if (data) {
-        if (
-          data.id === action.payload.id &&
-          data.coverage === action.payload.coverage
-        )
-          return {
-            errors: state.errors,
-            loading: state.loading,
-            data: {
-              ...state.data,
-              items: [...state.data.items, action.payload],
-            },
-          };
+    case CartActionTypes.ADD_TO_CART: {
+      const tempProduct = [...state.data.items];
+      const product = action.payload;
+
+      const productInCartIndex = tempProduct.findIndex(
+        (item) =>
+          item.id === action.payload.id &&
+          item.coverage === action.payload.coverage
+      );
+
+      if (productInCartIndex >= 0) {
+        state.data.items[productInCartIndex].qty++;
+        state.data.items[productInCartIndex].price =
+          state.data.items[productInCartIndex].price *
+          state.data.items[productInCartIndex].price;
+      } else {
+        state.data.items.push({
+          ...product,
+        });
       }
       return {
         errors: state.errors,
         loading: state.loading,
         data: {
-          ...state.data,
-          id: state.data.userId,
-          items: [...state.data.items, action.payload],
+          items: [...state.data.items],
         },
       };
     }
+
     case CartActionTypes.ADD_TO_CART_FAILURE: {
       return { ...state, loading: false, errors: action.payload };
     }
@@ -61,7 +63,6 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
         loading: state.loading,
         data: {
           ...state.data,
-          id: state.data.userId,
           items: state.data.items.filter((item) => item.id !== action.payload),
         },
       };
@@ -71,6 +72,11 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
     }
 
     default: {
+      /**
+       * If this reducer doesn't recognize the action type, or doesn't
+       * care about this specific action, return the existing state unchanged
+       */
+
       return state;
     }
   }

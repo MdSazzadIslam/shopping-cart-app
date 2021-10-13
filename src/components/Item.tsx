@@ -80,4 +80,4 @@ const Item: React.FC<Props> = ({ item, addItemToCart }) => {
   );
 };
 
-export default Item;
+export default React.memo(Item);

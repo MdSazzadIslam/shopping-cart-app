@@ -3,7 +3,7 @@ import { ProductProps } from '../types/product';
 import { getProducts } from '../redux/product/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/cart/action';
-import Item from '../components/Item';
+import Item from '../components/Item'; //Separating concerns in a React component
 import { ApplicationState } from '../redux/createRootReducer';
 import './Products.css';
 import Loader from '../components/Loader';

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from '../components/Header';
 import Loader from '../components/Loader';
 
+/* lazy loading for better performance, splits code into smaller chunks */
 const Products = lazy(() => import('../pages/Products'));
 const Cart = lazy(() => import('../components/Cart'));
 

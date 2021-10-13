@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { removeFromCart } from '../redux/cart/action';
 import { useDispatch, useSelector } from 'react-redux';
-import { ProductProps } from '../types/product';
 import { ApplicationState } from '../redux/createRootReducer';
 import Loader from './Loader';
 import './Cart.css';
@@ -14,10 +13,9 @@ const Cart: React.FC = () => {
     (state: ApplicationState) => state.cart
   );
 
-  const total = data.items.reduce(
-    (sum, { price, qty }) => sum + price * qty,
-    0
-  );
+  const total = data.items
+    .reduce((sum, { price, qty }) => sum + price * qty, 0)
+    .toFixed(2);
 
   const deleteCartHandler = async (
     e: React.FormEvent<HTMLButtonElement>,
@@ -36,15 +34,8 @@ const Cart: React.FC = () => {
           <img src={imageUrl} width="70px" alt={item.name} />
         </td>
         <td>{item.name}</td>
-        <td>
-          <input
-            className="form-control"
-            type="text"
-            value={item.qty}
-            width="10px"
-            disabled
-          />
-        </td>
+
+        <td className="text-right">{item.qty}</td>
         <td className="text-right">{item.coverage}</td>
         <td className="text-right">{item.risk}</td>
         <td className="text-right">{item.price}</td>

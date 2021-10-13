@@ -30,6 +30,7 @@ import { ProductState } from '../../types/product';
  * against mutation.
  */
 
+// rehydrate state on app start
 export const initialState: ProductState = {
   data: [],
   errors: undefined,
@@ -50,7 +51,10 @@ const reducer: Reducer<ProductState> = (state = initialState, action) => {
       return { ...state, loading: false, errors: action.payload };
     }
     default: {
-      // return the previous state on any unknown action
+      /**
+       * If this reducer doesn't recognize the action type, or doesn't
+       * care about this specific action, return the existing state unchanged
+       */
       return state;
     }
   }

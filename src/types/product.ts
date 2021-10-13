@@ -1,5 +1,5 @@
 /**
- * The basic structure of a product
+ * The basic structure of a product - single responsibility principle?
  * */
 export type ProductProps = {
   id: string;
