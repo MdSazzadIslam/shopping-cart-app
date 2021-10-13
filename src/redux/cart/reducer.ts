@@ -58,12 +58,19 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
     }
 
     case CartActionTypes.REMOVE_FROM_CART: {
+      debugger;
+      console.log(action.payload.id, action.payload.coverage);
       return {
         errors: state.errors,
         loading: state.loading,
         data: {
           ...state.data,
-          items: state.data.items.filter((item) => item.id !== action.payload),
+
+          items: state.data.items.filter(
+            (item) =>
+              item.id !== action.payload.id &&
+              item.coverage !== action.payload.coverage
+          ),
         },
       };
     }

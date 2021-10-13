@@ -47,12 +47,12 @@ export const addToCart: ActionCreator<
 
 export const removeFromCart: ActionCreator<
   ThunkAction<void, ApplicationState, ProductProps, Action<string>>
-> = (id) => {
+> = (id: string, coverage: number) => {
   return (dispatch: Dispatch): Action => {
     try {
       return dispatch({
         type: CartActionTypes.REMOVE_FROM_CART,
-        payload: id,
+        payload: { id, coverage },
       });
     } catch (e) {
       return dispatch({

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { removeFromCart } from '../redux/cart/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { ApplicationState } from '../redux/createRootReducer';
+import { formatPrice } from '../utils';
 import Loader from './Loader';
 import './Cart.css';
 
@@ -19,10 +20,11 @@ const Cart: React.FC = () => {
 
   const deleteCartHandler = async (
     e: React.FormEvent<HTMLButtonElement>,
-    id: string
+    id: string,
+    coverage: number
   ) => {
     e.preventDefault();
-    dispatch(removeFromCart(id));
+    dispatch(removeFromCart(id, coverage));
   };
 
   const cartsData = data.items.map((item, index) => {
@@ -39,11 +41,11 @@ const Cart: React.FC = () => {
         <td className="text-right">{item.risk}</td>
         <td className="text-right">{item.qty}</td>
         <td className="text-right">{item.unitPrice}</td>
-        <td className="text-right">{item.price}</td>
+        <td className="text-right">{formatPrice(item.price)}</td>
         <td className="text-right">
           <button
             className="btn btn-sm btn-danger"
-            onClick={(e) => deleteCartHandler(e, item.id)}
+            onClick={(e) => deleteCartHandler(e, item.id, item.coverage)}
           >
             <i className="fa fa-trash" />
           </button>
