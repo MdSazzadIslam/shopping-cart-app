@@ -6,6 +6,7 @@ import { ApplicationState, createRootReducer } from './createRootReducer';
 import logger from 'redux-logger';
 
 // export store singleton instance
+
 export default function configureStore(
   history: History,
   initialState: ApplicationState

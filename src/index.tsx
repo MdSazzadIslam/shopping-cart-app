@@ -1,11 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { createBrowserHistory } from "history";
-import configureStore from "./redux/configureStore";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { createBrowserHistory } from 'history';
+import configureStore from './redux/configureStore';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+/**
+ * PersistGate delays the rendering of your app's UI until your persisted state has been retrieved and saved to redux.
+ */
 const history = createBrowserHistory();
 
 const initialState: any = {};
@@ -15,7 +19,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App store={store} history={history} />,
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

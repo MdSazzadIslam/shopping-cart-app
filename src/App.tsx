@@ -1,10 +1,10 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { ApplicationState } from "./redux/createRootReducer";
-import { Store } from "redux";
-import { History } from "history";
-import { ConnectedRouter } from "connected-react-router";
-import Routes from "./routes";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { ApplicationState } from './redux/createRootReducer';
+import { Store } from 'redux';
+import { History } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
+import Routes from './routes';
 
 interface MainProps {
   store: Store<ApplicationState>;

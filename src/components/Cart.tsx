@@ -7,7 +7,15 @@ import { formatPrice } from '../utils';
 import Loader from './Loader';
 import './Cart.css';
 
-const Cart: React.FC = () => {
+interface ICartProps {
+  deleteCartHandler: (
+    e: React.FormEvent<HTMLButtonElement>,
+    id: string,
+    coverage: number
+  ) => void;
+}
+
+const Cart: React.FC<ICartProps> = ({ deleteCartHandler }) => {
   const dispatch = useDispatch();
 
   const { data, loading, errors } = useSelector(
@@ -18,7 +26,7 @@ const Cart: React.FC = () => {
     .reduce((sum, { price, qty }) => sum + price * qty, 0)
     .toFixed(2);
 
-  const deleteCartHandler = async (
+  deleteCartHandler = async (
     e: React.FormEvent<HTMLButtonElement>,
     id: string,
     coverage: number
