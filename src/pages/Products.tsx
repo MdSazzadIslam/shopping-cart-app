@@ -7,7 +7,7 @@ import Item from '../components/Item'; //Separating concerns in a React componen
 import { ApplicationState } from '../redux/createRootReducer';
 import './Products.css';
 import Loader from '../components/Loader';
-
+import Message from '../components/Message';
 /**
  * defining props type for this component
  */
@@ -34,7 +34,7 @@ const Products: React.FC<AllProps> = ({ products }) => {
   };
 
   if (errors) {
-    return <h3>Something went wrong</h3>;
+    return <Message variant="danger">{'Something went wrong'}</Message>;
   }
 
   return (

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { ProductProps } from '../types/product';
 import { Form } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../redux/cart/action';
+
 import './Item.css';
 /**
  * defining props type for this component
@@ -18,7 +17,6 @@ interface IDispatch {
 type Props = IItemprops & IDispatch;
 
 const Item: React.FC<Props> = ({ item, addItemToCart }) => {
-  const dispatch = useDispatch();
   const [coverage, setCoverage] = useState<number>(0);
   const [unitPrice, setUnitPrice] = useState<number>(0);
 
@@ -28,7 +26,7 @@ const Item: React.FC<Props> = ({ item, addItemToCart }) => {
       item.coverage = coverage;
       item.unitPrice = unitPrice;
       item.price = unitPrice;
-      dispatch(addToCart(item));
+      addItemToCart(item);
     } else {
       alert('Coverage is required!!! [Please move slider]');
     }
