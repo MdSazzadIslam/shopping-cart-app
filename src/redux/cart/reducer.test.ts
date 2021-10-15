@@ -8,10 +8,6 @@ describe('The cart reducer', () => {
     expect(state).toEqual(initialState);
   });
 
-  /*   it('should return the initial state', () => {
-    expect(cartReducer(undefined, {})).toMatchSnapshot();
-  }); */
-
   it('should handle CART_REQUEST', () => {
     expect(
       cartReducer(initialState, {
