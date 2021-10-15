@@ -10,17 +10,9 @@
     "test": "react-scripts test",
     "format": "prettier --write ./src/**/*.{ts,tsx,css}",
     "lint": "tslint --format stylish --force src/**/*.tsx src/**/*.ts",
-    "lint:fix": "eslint './src/**/*.{ts,tsx}'",
+    "lint:fix": "tslint './src/**/*.{ts,tsx}'",
     "type-check": "tsc",
     "eject": "react-scripts eject"
-  },
-  "jest": {
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ]
   },
   "keywords": [
     "react",
